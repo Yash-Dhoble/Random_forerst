@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[20]:
 
 
 import pandas as pd
 import streamlit as st
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
-
+import sklearn
 from sklearn.ensemble import RandomForestClassifier
 
 
@@ -172,16 +172,16 @@ predict=model.predict(df)
 st.subheader('Predicted Type')
 
 
-# In[17]:
+# In[19]:
 
 
-st.write(predict)
+st.write('Edible'if predict==0 else 'Poisonous')
 
 
 # In[18]:
 
 
-prob= model.predict_proba(df)
+
 
 
 # In[ ]:
