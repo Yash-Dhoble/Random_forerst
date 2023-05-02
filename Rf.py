@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[20]:
+# In[21]:
 
 
 import pandas as pd
@@ -12,19 +12,19 @@ import sklearn
 from sklearn.ensemble import RandomForestClassifier
 
 
-# In[2]:
+# In[22]:
 
 
 st.title('Predicting Mushroom Type using Random Forest')
 
 
-# In[3]:
+# In[23]:
 
 
 st.sidebar.header('Input Parameters')
 
 
-# In[4]:
+# In[24]:
 
 
 def user_input_features():
@@ -59,60 +59,64 @@ def user_input_features():
   
 
 
-# In[5]:
+# In[25]:
 
 
 df= user_input_features()
 st.subheader('User Input Parameters')
 
 
-# In[6]:
+# In[26]:
 
 
 table= pd.read_csv('mushrooms.csv')
 
 
-# In[7]:
+# In[27]:
 
 
 table=table.drop(['veil-type','gill-attachment','veil-color'],axis=1)
 
 
-# In[8]:
+# In[28]:
 
 
 x= table.drop(['class'],axis=1)
 y= table['class']
 
 
-# In[9]:
+# In[29]:
 
 
 X=x.apply(LabelEncoder().fit_transform)
+
+
+# In[30]:
+
 
 le= LabelEncoder()
 Y=le.fit_transform(y)
 
 
-# In[10]:
+# In[31]:
 
 
 x_train,x_test,y_train,y_test=train_test_split(X,Y,test_size=0.3)
 
 
-# In[11]:
+# In[32]:
 
 
 model=RandomForestClassifier(max_features='sqrt',n_estimators=10)
 
 
-# In[12]:
+# In[33]:
 
 
 model.fit(x_train,y_train)
 
 
-# In[13]:
+# In[34]:
 
 
 frame_1= pd.DataFrame({'cap-shape':['bell=b','conical=c','convex=x','flat=f', 'knobbed=k','sunken=s'],'code':[0,1,5,2,3,4]})
@@ -136,7 +140,7 @@ frame_18= pd.DataFrame({'population': ['abundant=a','clustered=c','numerous=n','
 frame_19= pd.DataFrame({'habitat': ['grasses=g','leaves=l','meadows=m','paths=p','urban=u','waste=w','woods=d'],'code':[1,2,3,4,5,6,0]})
 
 
-# In[14]:
+# In[35]:
 
 
 st.dataframe(frame_1, use_container_width=True)
@@ -160,25 +164,25 @@ st.dataframe(frame_18, use_container_width=True)
 st.dataframe(frame_19, use_container_width=True)
 
 
-# In[15]:
+# In[36]:
 
 
 predict=model.predict(df)
 
 
-# In[16]:
+# In[37]:
 
 
 st.subheader('Predicted Type')
 
 
-# In[19]:
+# In[38]:
 
 
 st.write('Edible'if predict==0 else 'Poisonous')
 
 
-# In[18]:
+# In[ ]:
 
 
 
